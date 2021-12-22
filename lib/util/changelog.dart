@@ -4,15 +4,16 @@ class Changelog{
   static String appName = "UI Tester Fschmatz";
 
   static String changelogCurrent = '''
-0.2
-- Home
+0.3.0
+- Experimental White Page Theme
 ''';
 
   static String changelogsOld = '''
-0.1
-- Project Start                                  
+0.2.0
+- New Home
 
-      (ಠ‿ಠ)  
+0.1.0
+- Project Start
 ''';
 
 }

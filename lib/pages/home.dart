@@ -4,6 +4,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui_tester_reborn/pages/settings/settings_page.dart';
+import 'package:ui_tester_reborn/pages/whiteTheme.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -85,7 +86,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   //------------- CARD
   TextEditingController customControllerCardColor = TextEditingController();
 
-  Color cardColor = const Color(0xFF2A2A2A);
+  Color cardColor = const Color(0xFF303032);
 
   void changeCardColor(String colorCode) {
     try {
@@ -102,22 +103,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   void populateTextFieldsWithDefaultValues() {
     setState(() {});
     //CARD
-    customControllerCardColor.text = '2A2A2A';
+    customControllerCardColor.text = '303032';
 
     //APP
-    customControllerAppBackgroundColor.text = '202020';
-    customControllerAppTopBarColor.text = '202020';
-    customControllerAppBottomBarColor.text = '171717';
+    customControllerAppBackgroundColor.text = '202022';
+    customControllerAppTopBarColor.text = '202022';
+    customControllerAppBottomBarColor.text = '151515';
     customControllerAccentColor.text = '449EBC';
   }
 
   void refreshUI() {
     //restore defaults
-    changeCardColor('2A2A2A');
+    changeCardColor('303032');
     changeAccentColor('449EBC');
-    changeBackgroundColor('202020');
-    changeAppTopBarColor('202020');
-    changeAppBottomBarColor('171717');
+    changeBackgroundColor('202022');
+    changeAppTopBarColor('202022');
+    changeAppBottomBarColor('151515');
   }
 
   @override
@@ -158,6 +159,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 elevation: 0,
                 title: const Text('UI Tester Fschmatz'),
                 actions: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                    child: IconButton(
+                        icon: const Icon(
+                          Icons.brightness_high_outlined,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                const WhiteTheme(),
+                                fullscreenDialog: true,
+                              ));
+                        }),
+                  ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                     child: IconButton(
@@ -235,7 +252,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: Row(children: [
                     Expanded(
                         child: Text(
-                      "Card Color\nDef: 2A2A2A",
+                      "Card Color\nDef: 303032",
                       style: TextStyle(
                           fontSize: fieldNameFontSize,
                           color: Theme.of(context).hintColor),
@@ -255,7 +272,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "Background\nDef: 202020",
+                        "Background\nDef: 202022",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),
@@ -277,7 +294,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "TopBar\nDef: 202020",
+                        "TopBar\nDef: 202022",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),
@@ -298,7 +315,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "BottomBar\nDef: 171717",
+                        "BottomBar\nDef: 151515",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),

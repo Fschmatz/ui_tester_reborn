@@ -6,7 +6,7 @@ class AppInfoPage extends StatelessWidget {
   const AppInfoPage({Key? key}) : super(key: key);
 
   _launchGithub()  {
-    const url = '';
+    const url = 'https://github.com/Fschmatz/ui_tester_reborn';
     launch(url);
   }
 
@@ -24,7 +24,7 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 20),
           CircleAvatar(
             radius: 55,
-            backgroundColor: Colors.green[400],
+            backgroundColor: themeColorApp,
             child: const CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/avatar.jpg'),
@@ -52,17 +52,6 @@ class AppInfoPage extends StatelessWidget {
           ),
           const ListTile(
             leading: Icon( Icons.info_outline),
-            title: Text(
-              "HAMMERED AND REDONE: 0.5 Times !!!",
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-          const ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
             title: Text(
               "Application created using Flutter and the Dart language, used for testing and learning.",
               style: TextStyle(
