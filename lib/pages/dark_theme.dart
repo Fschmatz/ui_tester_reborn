@@ -137,17 +137,16 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     final Brightness iconBrightness = Theme.of(context).primaryColorBrightness;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-          statusBarIconBrightness: iconBrightness,
-          systemNavigationBarColor: bottomBarColor,
-          statusBarColor: topBarColor,
-          systemStatusBarContrastEnforced: false,
-          systemNavigationBarIconBrightness: iconBrightness,
-        ),
+      value: SystemUiOverlayStyle(
+        statusBarIconBrightness: iconBrightness,
+        systemNavigationBarColor: bottomBarColor,
+        statusBarColor: topBarColor,
+        systemStatusBarContrastEnforced: false,
+        systemNavigationBarIconBrightness: iconBrightness,
+      ),
       child: SafeArea(
         child: GestureDetector(
           onTap: () {
@@ -160,7 +159,6 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 elevation: 0,
                 title: const Text('UI Tester Fschmatz'),
                 actions: [
-
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                     child: IconButton(
@@ -253,7 +251,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                   ]),
                 ),
                 SwitchListTile(
-                  contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
+                    contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
                     title: Text(
                       "Card Elevation\nDef: 1",
                       style: TextStyle(
@@ -305,7 +303,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                       ),
                       Flexible(
                         child: txtFieldFuncString(
-                            customControllerAppTopBarColor, changeAppTopBarColor),
+                            customControllerAppTopBarColor,
+                            changeAppTopBarColor),
                       ),
                     ],
                   ),
@@ -325,7 +324,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                         width: 70,
                       ),
                       Expanded(
-                        child: txtFieldFuncString(customControllerAppBottomBarColor,
+                        child: txtFieldFuncString(
+                            customControllerAppBottomBarColor,
                             changeAppBottomBarColor),
                       ),
                     ],
@@ -346,7 +346,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                       Container(
                         height: 45,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[800]!, width: 1.5),
+                          border:
+                              Border.all(color: Colors.grey[800]!, width: 1.5),
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
@@ -378,7 +379,10 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                                 },
                               );
                             },
-                            icon: const Icon(Icons.colorize_outlined,size: 20,)),
+                            icon: const Icon(
+                              Icons.colorize_outlined,
+                              size: 20,
+                            )),
                       ),
                       const SizedBox(
                         width: 25,
@@ -429,27 +433,30 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
               ]),
 
               //BOTTOMBAR
-             bottomNavigationBar: Theme(
+              bottomNavigationBar: Theme(
                 data: ThemeData(
-                 navigationBarTheme: NavigationBarThemeData(
-                     backgroundColor: bottomBarColor,
-                     indicatorColor: accentColor,
-                     iconTheme: MaterialStateProperty.all(const IconThemeData(
-                       color: Color(0xFFCACACA),
-                     )),
-                     labelTextStyle: MaterialStateProperty.all(const TextStyle(
-                         color: Color(0xFFCACACA), fontWeight: FontWeight.w500))
-                 )
-                ),
+                    navigationBarTheme: NavigationBarThemeData(
+                        backgroundColor: bottomBarColor,
+                        indicatorColor: accentColor,
+                        iconTheme:
+                            MaterialStateProperty.all(const IconThemeData(
+                          color: Color(0xFFCACACA),
+                        )),
+                        labelTextStyle: MaterialStateProperty.all(
+                            const TextStyle(
+                                color: Color(0xFFCACACA),
+                                fontWeight: FontWeight.w500)))),
                 child: NavigationBar(
-                  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+                  labelBehavior:
+                      NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: 0,
                   onDestinationSelected: (index) {
-                    if(index == 1){
+                    if (index == 1) {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const LightTheme()),
-                            (Route<dynamic> route) => false,
+                        MaterialPageRoute(
+                            builder: (context) => const LightTheme()),
+                        (Route<dynamic> route) => false,
                       );
                     }
                   },
@@ -472,8 +479,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     ),
                   ],
                 ),
-              )
-          ),
+              )),
         ),
       ),
     );

@@ -115,11 +115,11 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
   void refreshUI() {
     //restore defaults
     cardElevation = true;
-    changeCardColor('2A2A2A');
-    changeAccentColor('449EBC');
-    changeBackgroundColor('202020');
-    changeAppTopBarColor('202020');
-    changeAppBottomBarColor('171717');
+    changeCardColor('F0F0F0');
+    changeAccentColor('0795C2');
+    changeBackgroundColor('FFFFFF');
+    changeAppTopBarColor('FFFFFF');
+    changeAppBottomBarColor('EAEAEA');
   }
 
   @override
@@ -137,7 +137,6 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     const Brightness iconBrightness = Brightness.dark;
 
     return Theme(
@@ -145,7 +144,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
           cardTheme: CardTheme(
             color: cardColor,
           ),
-        brightness: Brightness.light,
+          brightness: Brightness.light,
           appBarTheme: const AppBarTheme(
               color: Color(0xFFFFFFFF),
               elevation: 0,
@@ -161,17 +160,15 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                 color: Color(0xFF050505),
               )),
               labelTextStyle: MaterialStateProperty.all(const TextStyle(
-                  color: Color(0xFF050505), fontWeight: FontWeight.w500))
-          )
-      ),
+                  color: Color(0xFF050505), fontWeight: FontWeight.w500)))),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle(
-            statusBarIconBrightness: iconBrightness,
-            systemNavigationBarColor: bottomBarColor,
-            statusBarColor: topBarColor,
-            systemStatusBarContrastEnforced: false,
-            systemNavigationBarIconBrightness: iconBrightness,
-          ),
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: iconBrightness,
+          systemNavigationBarColor: bottomBarColor,
+          statusBarColor: topBarColor,
+          systemStatusBarContrastEnforced: false,
+          systemNavigationBarIconBrightness: iconBrightness,
+        ),
         child: SafeArea(
           child: GestureDetector(
             onTap: () {
@@ -244,8 +241,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                                   ),
                                   Text(
                                     "You're Tearing Me Apart, Lisa!",
-                                    style: TextStyle(
-                                        fontSize: 14),
+                                    style: TextStyle(fontSize: 14),
                                   ),
                                 ],
                               ),
@@ -261,8 +257,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       Expanded(
                           child: Text(
                         "Card Color\nDef: F0F0F0",
-                        style: TextStyle(
-                            fontSize: fieldNameFontSize),
+                        style: TextStyle(fontSize: fieldNameFontSize),
                       )),
                       const SizedBox(
                         width: 70,
@@ -277,8 +272,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
                       title: Text(
                         "Card Elevation\nDef: 1",
-                        style: TextStyle(
-                            fontSize: fieldNameFontSize),
+                        style: TextStyle(fontSize: fieldNameFontSize),
                       ),
                       activeColor: accentColor,
                       value: cardElevation,
@@ -294,8 +288,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                         Expanded(
                             child: Text(
                           "Background\nDef: FFFFFF",
-                          style: TextStyle(
-                              fontSize: fieldNameFontSize),
+                          style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
                           width: 70,
@@ -315,15 +308,15 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                         Expanded(
                             child: Text(
                           "TopBar\nDef: FFFFFF",
-                          style: TextStyle(
-                              fontSize: fieldNameFontSize),
+                          style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
                           width: 70,
                         ),
                         Flexible(
                           child: txtFieldFuncString(
-                              customControllerAppTopBarColor, changeAppTopBarColor),
+                              customControllerAppTopBarColor,
+                              changeAppTopBarColor),
                         ),
                       ],
                     ),
@@ -335,14 +328,14 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                         Expanded(
                             child: Text(
                           "BottomBar\nDef: EAEAEA",
-                          style: TextStyle(
-                              fontSize: fieldNameFontSize),
+                          style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
                           width: 70,
                         ),
                         Expanded(
-                          child: txtFieldFuncString(customControllerAppBottomBarColor,
+                          child: txtFieldFuncString(
+                              customControllerAppBottomBarColor,
                               changeAppBottomBarColor),
                         ),
                       ],
@@ -356,13 +349,13 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                         Expanded(
                             child: Text(
                           "Accent\nDef: 0795C2",
-                          style: TextStyle(
-                              fontSize: fieldNameFontSize),
+                          style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         Container(
                           height: 45,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[800]!, width: 1.5),
+                            border: Border.all(
+                                color: Colors.grey[800]!, width: 1.5),
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
@@ -394,7 +387,10 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                                   },
                                 );
                               },
-                              icon: const Icon(Icons.colorize_outlined,size: 20,)),
+                              icon: const Icon(
+                                Icons.colorize_outlined,
+                                size: 20,
+                              )),
                         ),
                         const SizedBox(
                           width: 25,
@@ -446,14 +442,16 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
 
                 //BOTTOMBAR
                 bottomNavigationBar: NavigationBar(
-                  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+                  labelBehavior:
+                      NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: 1,
                   onDestinationSelected: (index) {
-                    if(index == 0){
+                    if (index == 0) {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const DarkTheme()),
-                            (Route<dynamic> route) => false,
+                        MaterialPageRoute(
+                            builder: (context) => const DarkTheme()),
+                        (Route<dynamic> route) => false,
                       );
                     }
                   },
@@ -475,8 +473,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       label: 'Light Theme',
                     ),
                   ],
-                )
-            ),
+                )),
           ),
         ),
       ),

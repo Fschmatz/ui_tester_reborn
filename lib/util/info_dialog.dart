@@ -11,8 +11,7 @@ class InfoDialog extends StatefulWidget {
 }
 
 class _InfoDialogState extends State<InfoDialog> {
-
-  _launchGithub()  {
+  _launchGithub() {
     const url = 'https://github.com/Fschmatz/ui_tester_reborn';
     launch(url);
   }
@@ -45,31 +44,32 @@ class _InfoDialogState extends State<InfoDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-
               ListTile(
                 title: Text("Source Code".toUpperCase(),
                     style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context).colorScheme.primary,)),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
               ),
               ListTile(
-                onTap: () {_launchGithub();},
+                onTap: () {
+                  _launchGithub();
+                },
                 leading: const Icon(Icons.open_in_new_outlined),
                 title: const Text("View on GitHub",
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Colors.blue)),
               ),
-
               const Divider(),
               ListTile(
-
                 title: Text("Changelog".toUpperCase(),
                     style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context).colorScheme.primary,)),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
               ),
               ListTile(
                 /*leading: const Icon(
@@ -84,7 +84,7 @@ class _InfoDialogState extends State<InfoDialog> {
           ),
         ),
       ),
-     /* actions: [
+      /* actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text('OK'),
