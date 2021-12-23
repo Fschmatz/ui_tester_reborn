@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ui_tester_reborn/pages/settings/settings_page.dart';
+import 'package:ui_tester_reborn/pages/dark_theme.dart';
+import 'package:ui_tester_reborn/util/info_dialog.dart';
 
-class WhiteTheme extends StatefulWidget {
+class LightTheme extends StatefulWidget {
   @override
-  _WhiteThemeState createState() => _WhiteThemeState();
+  _LightThemeState createState() => _LightThemeState();
 
-  const WhiteTheme({Key? key}) : super(key: key);
+  const LightTheme({Key? key}) : super(key: key);
 }
 
-class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
+class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
   //------------- HOME
   TextEditingController customControllerAppBackgroundColor =
       TextEditingController();
@@ -182,7 +182,7 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                 appBar: AppBar(
                   backgroundColor: topBarColor,
                   elevation: 0,
-                  title: const Text('White Theme'),
+                  title: const Text('UI Tester Fschmatz'),
                   actions: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -197,9 +197,16 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                     ),
                     IconButton(
                         icon: const Icon(
-                          Icons.settings_outlined,
+                          Icons.info_outline_rounded,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return InfoDialog();
+                            },
+                          );
+                        }),
                   ],
                 ),
                 body: ListView(children: [
@@ -271,8 +278,7 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                       title: Text(
                         "Card Elevation\nDef: 1",
                         style: TextStyle(
-                            fontSize: fieldNameFontSize,
-                            color: Theme.of(context).hintColor),
+                            fontSize: fieldNameFontSize),
                       ),
                       activeColor: accentColor,
                       value: cardElevation,
@@ -441,26 +447,32 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                 //BOTTOMBAR
                 bottomNavigationBar: NavigationBar(
                   labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-                  selectedIndex: 0,
+                  selectedIndex: 1,
                   onDestinationSelected: (index) {
-                    setState(() {});
+                    if(index == 0){
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const DarkTheme()),
+                            (Route<dynamic> route) => false,
+                      );
+                    }
                   },
                   destinations: const [
                     NavigationDestination(
-                      icon: Icon(Icons.home_outlined),
+                      icon: Icon(Icons.dark_mode_outlined),
                       selectedIcon: Icon(
-                        Icons.home,
+                        Icons.dark_mode,
                         color: Colors.black87,
                       ),
-                      label: 'Home',
+                      label: 'Dark Theme',
                     ),
                     NavigationDestination(
-                      icon: Icon(Icons.fact_check_outlined),
+                      icon: Icon(Icons.light_mode_outlined),
                       selectedIcon: Icon(
-                        Icons.fact_check,
+                        Icons.light_mode,
                         color: Colors.black87,
                       ),
-                      label: 'Buttons',
+                      label: 'Light Theme',
                     ),
                   ],
                 )

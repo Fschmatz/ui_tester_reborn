@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ui_tester_reborn/pages/settings/settings_page.dart';
-import 'package:ui_tester_reborn/pages/whiteTheme.dart';
+import 'package:ui_tester_reborn/pages/light_theme.dart';
+import 'package:ui_tester_reborn/util/info_dialog.dart';
 
-class Home extends StatefulWidget {
+class DarkTheme extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _DarkThemeState createState() => _DarkThemeState();
 
-  const Home({Key? key}) : super(key: key);
+  const DarkTheme({Key? key}) : super(key: key);
 }
 
-class _HomeState extends State<Home> with TickerProviderStateMixin {
+class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
   //------------- HOME
   TextEditingController customControllerAppBackgroundColor =
       TextEditingController();
@@ -161,22 +160,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 elevation: 0,
                 title: const Text('UI Tester Fschmatz'),
                 actions: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                    child: IconButton(
-                        icon: const Icon(
-                          Icons.brightness_high_outlined,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                const WhiteTheme(),
-                                fullscreenDialog: true,
-                              ));
-                        }),
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                     child: IconButton(
@@ -190,16 +174,15 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   ),
                   IconButton(
                       icon: const Icon(
-                        Icons.settings_outlined,
+                        Icons.info_outline_rounded,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const SettingsPage(),
-                              fullscreenDialog: true,
-                            ));
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return InfoDialog();
+                          },
+                        );
                       }),
                 ],
               ),
@@ -446,7 +429,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ]),
 
               //BOTTOMBAR
-              bottomNavigationBar: Theme(
+             bottomNavigationBar: Theme(
                 data: ThemeData(
                  navigationBarTheme: NavigationBarThemeData(
                      backgroundColor: bottomBarColor,
@@ -462,24 +445,30 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: 0,
                   onDestinationSelected: (index) {
-                    setState(() {});
+                    if(index == 1){
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LightTheme()),
+                            (Route<dynamic> route) => false,
+                      );
+                    }
                   },
                   destinations: const [
                     NavigationDestination(
-                      icon: Icon(Icons.home_outlined),
+                      icon: Icon(Icons.dark_mode_outlined),
                       selectedIcon: Icon(
-                        Icons.home,
+                        Icons.dark_mode,
                         color: Colors.black87,
                       ),
-                      label: 'Home',
+                      label: 'Dark Theme',
                     ),
                     NavigationDestination(
-                      icon: Icon(Icons.fact_check_outlined),
+                      icon: Icon(Icons.light_mode_outlined),
                       selectedIcon: Icon(
-                        Icons.fact_check,
+                        Icons.light_mode,
                         color: Colors.black87,
                       ),
-                      label: 'Buttons',
+                      label: 'Light Theme',
                     ),
                   ],
                 ),

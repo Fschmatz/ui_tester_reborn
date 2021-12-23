@@ -1,14 +1,21 @@
 class Changelog{
 
-  static String appVersion = "0.2.0";
+  static String appVersion = "1.0.0";
   static String appName = "UI Tester Fschmatz";
 
   static String changelogCurrent = '''
-0.3.0
-- Experimental White Page Theme
+1.0.0
+- Technically Usable
 ''';
 
-  static String changelogsOld = '''
+  static String changelogsOld = '''  
+0.4.0
+- Light and Dark Theme Tabs
+- Elevation CheckListTile
+
+0.3.0
+- Experimental Light Page Theme
+
 0.2.0
 - New Home
 
