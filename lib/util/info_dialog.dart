@@ -15,6 +15,11 @@ class _InfoDialogState extends State<InfoDialog> {
     const url = 'https://github.com/Fschmatz/ui_tester_reborn';
     launch(url);
   }
+  _launchMaterialSite() {
+    const url = 'https://m3.material.io/';
+    launch(url);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _InfoDialogState extends State<InfoDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text("Source Code".toUpperCase(),
+                title: Text("Links".toUpperCase(),
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
@@ -57,7 +62,17 @@ class _InfoDialogState extends State<InfoDialog> {
                   _launchGithub();
                 },
                 leading: const Icon(Icons.open_in_new_outlined),
-                title: const Text("View on GitHub",
+                title: const Text("View Source Code on GitHub",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue)),
+              ),
+              ListTile(
+                onTap: () {
+                  _launchMaterialSite();
+                },
+                leading: const Icon(Icons.open_in_new_outlined),
+                title: const Text("Material 3 Guidelines",
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Colors.blue)),

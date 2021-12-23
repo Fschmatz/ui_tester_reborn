@@ -9,6 +9,7 @@ class Changelog{
 
 0.5.0
 - Added FAB
+- Show FAB CheckListTile
 
 0.4.0
 - Light and Dark Theme Tabs

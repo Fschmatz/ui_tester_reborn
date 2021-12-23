@@ -28,6 +28,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
   double fieldNameFontSize = 14.0;
   EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(25, 10, 25, 10);
   bool cardElevation = true;
+  bool showFab = false;
 
   void changeColorPicker(Color color) => setState(() => {
         accentColor = color,
@@ -231,12 +232,13 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+                const SizedBox(height: 10,),
                 Padding(
                   padding: listItemsPaddings,
                   child: Row(children: [
                     Expanded(
                         child: Text(
-                      "Card Color\nDef: 303032",
+                      "Card Background\nDef: 303032",
                       style: TextStyle(
                           fontSize: fieldNameFontSize,
                           color: Theme.of(context).hintColor),
@@ -271,7 +273,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "Background\nDef: 202022",
+                        "App Background\nDef: 202022",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),
@@ -293,7 +295,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "TopBar\nDef: 202022",
+                        "App TopBar\nDef: 202022",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),
@@ -315,7 +317,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                           child: Text(
-                        "BottomBar\nDef: 151515",
+                        "App BottomBar\nDef: 151515",
                         style: TextStyle(
                             fontSize: fieldNameFontSize,
                             color: Theme.of(context).hintColor),
@@ -427,25 +429,43 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
+                SwitchListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
+                    title: Text(
+                      "Show FAB",
+                      style: TextStyle(
+                          fontSize: fieldNameFontSize,
+                          color: Theme.of(context).hintColor),
+                    ),
+                    activeColor: accentColor,
+                    value: showFab,
+                    onChanged: (value) {
+                      setState(() {
+                        showFab = value;
+                      });
+                    }),
                 const SizedBox(
                   height: 150,
                 )
               ]),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.endFloat,
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: accentColor,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-                onPressed: () {
-                  Fluttertoast.showToast(
-                    msg: "Hello",
-                  );
-                },
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.black87,
+              floatingActionButton: Visibility(
+                visible: showFab,
+                child: FloatingActionButton(
+                  backgroundColor: accentColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                  ),
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                      msg: "Hello",
+                    );
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
 
