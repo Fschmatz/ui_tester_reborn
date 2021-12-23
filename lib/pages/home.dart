@@ -27,7 +27,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Color bottomBarColor = const Color(0xFF151515);
   Color accentColor = const Color(0xFF449EBC);
   double fieldNameFontSize = 14.0;
-  EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(30, 16, 30, 16);
+  EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(25, 10, 25, 10);
+  bool cardElevation = true;
 
   void changeColorPicker(Color color) => setState(() => {
         accentColor = color,
@@ -114,6 +115,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   void refreshUI() {
     //restore defaults
+    cardElevation = true;
     changeCardColor('303032');
     changeAccentColor('449EBC');
     changeBackgroundColor('202022');
@@ -203,8 +205,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
               body: ListView(children: [
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Card(
+                    elevation: cardElevation ? 1 : 0,
                     color: cardColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -266,6 +269,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ),
                   ]),
                 ),
+                SwitchListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
+                    title: Text(
+                      "Card Elevation\nDef: 1",
+                      style: TextStyle(
+                          fontSize: fieldNameFontSize,
+                          color: Theme.of(context).hintColor),
+                    ),
+                    activeColor: accentColor,
+                    value: cardElevation,
+                    onChanged: (value) {
+                      setState(() {
+                        cardElevation = value;
+                      });
+                    }),
                 Padding(
                   padding: listItemsPaddings,
                   child: Row(

@@ -26,7 +26,8 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
   Color bottomBarColor = const Color(0xFFEAEAEA);
   Color accentColor = const Color(0xFF0795C2);
   double fieldNameFontSize = 14.0;
-  EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(30, 16, 30, 16);
+  EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(25, 10, 25, 10);
+  bool cardElevation = true;
 
   void changeColorPicker(Color color) => setState(() => {
         accentColor = color,
@@ -113,6 +114,7 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
 
   void refreshUI() {
     //restore defaults
+    cardElevation = true;
     changeCardColor('2A2A2A');
     changeAccentColor('449EBC');
     changeBackgroundColor('202020');
@@ -204,6 +206,7 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Card(
+                      elevation: cardElevation ? 1 : 0,
                       color: cardColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -223,13 +226,13 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                                 radius: 25,
                               ),
                               Column(
-                                children: [
-                                  const SizedBox(
+                                children: const [
+                                  SizedBox(
                                     height: 40,
                                   ),
-                                  const Text("Ha! Ha! Ha! What A Story Mark!",
+                                  Text("Ha! Ha! Ha! What A Story Mark!",
                                       style: TextStyle(fontSize: 16)),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 10,
                                   ),
                                   Text(
@@ -263,6 +266,21 @@ class _WhiteThemeState extends State<WhiteTheme> with TickerProviderStateMixin {
                       ),
                     ]),
                   ),
+                  SwitchListTile(
+                      contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
+                      title: Text(
+                        "Card Elevation\nDef: 1",
+                        style: TextStyle(
+                            fontSize: fieldNameFontSize,
+                            color: Theme.of(context).hintColor),
+                      ),
+                      activeColor: accentColor,
+                      value: cardElevation,
+                      onChanged: (value) {
+                        setState(() {
+                          cardElevation = value;
+                        });
+                      }),
                   Padding(
                     padding: listItemsPaddings,
                     child: Row(
