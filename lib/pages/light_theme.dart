@@ -228,7 +228,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                             children: [
                               CircleAvatar(
                                 backgroundColor: accentColor,
-                                radius: 25,
+                                radius: 22,
                               ),
                               Column(
                                 children: const [
@@ -497,38 +497,26 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
-                        width: 64,
-                        height: 60,
-                        child: Card(
-                          color: accentColor,
-                          elevation: 6,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.add_outlined,
-                              color: Colors.black87,
-                            ),
-                          ),
+                      FloatingActionButton(
+                        onPressed: (){},
+                        backgroundColor: accentColor,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                        ),
+                        child: const Icon(
+                          Icons.add_outlined,
+                          color: Colors.black87,
                         ),
                       ),
-                      SizedBox(
-                        width: 64,
-                        height: 60,
-                        child: Card(
-                          color: accentColor,
-                          elevation: 6,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          child: const Center(
-                            child: Icon(
-                                Icons.add_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
+                      FloatingActionButton(
+                        onPressed: (){},
+                        backgroundColor: accentColor,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                        ),
+                        child: const Icon(
+                          Icons.add_outlined,
+                          color: Colors.white,
                         ),
                       ),
 
