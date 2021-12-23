@@ -7,6 +7,9 @@ class Changelog{
 1.0.0
 - Technically Usable
 
+0.5.0
+- Added FAB
+
 0.4.0
 - Light and Dark Theme Tabs
 - Elevation CheckListTile

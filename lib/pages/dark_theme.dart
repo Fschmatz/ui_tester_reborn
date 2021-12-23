@@ -428,9 +428,26 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 150,
                 )
               ]),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endFloat,
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: accentColor,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
+                onPressed: () {
+                  Fluttertoast.showToast(
+                    msg: "Hello",
+                  );
+                },
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.black87,
+                ),
+              ),
 
               //BOTTOMBAR
               bottomNavigationBar: Theme(
