@@ -7,9 +7,13 @@ class Changelog{
 1.0.0
 - Technically Usable
 
+0.6.0
+- UI Changes
+- Info Dialog
+- Links
+
 0.5.0
-- Added FAB
-- Show FAB CheckListTile
+- Added FAB View
 
 0.4.0
 - Light and Dark Theme Tabs

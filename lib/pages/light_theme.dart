@@ -222,7 +222,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                         ),
                         onTap: () {},
                         child: SizedBox(
-                          height: 120,
+                          height: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -233,7 +233,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                               Column(
                                 children: const [
                                   SizedBox(
-                                    height: 40,
+                                    height: 30,
                                   ),
                                   Text("Ha! Ha! Ha! What A Story Mark!",
                                       style: TextStyle(fontSize: 16)),
@@ -252,7 +252,24 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  Padding(
+                    padding: listItemsPaddings,
+                    child: Row(
+                      children: const [
+                        Text(
+                          "CARD",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 15,
+                            thickness: 1,
+                            height: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Padding(
                     padding: listItemsPaddings,
                     child: Row(children: [
@@ -286,10 +303,28 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                   Padding(
                     padding: listItemsPaddings,
                     child: Row(
+                      children: const [
+                        Text(
+                          "APP",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 15,
+                            thickness: 1,
+                            height: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: listItemsPaddings,
+                    child: Row(
                       children: [
                         Expanded(
                             child: Text(
-                          "App Background\nDef: FFFFFF",
+                          "Background\nDef: FFFFFF",
                           style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
@@ -309,7 +344,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       children: [
                         Expanded(
                             child: Text(
-                          "App TopBar\nDef: FFFFFF",
+                          "TopBar\nDef: FFFFFF",
                           style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
@@ -329,7 +364,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       children: [
                         Expanded(
                             child: Text(
-                          "App BottomBar\nDef: EAEAEA",
+                          "BottomBar\nDef: EAEAEA",
                           style: TextStyle(fontSize: fieldNameFontSize),
                         )),
                         const SizedBox(
@@ -358,7 +393,8 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey[800]!, width: 1.5),
-                            shape: BoxShape.circle,
+                            shape: BoxShape.rectangle,
+                            borderRadius:  const BorderRadius.all(Radius.circular(12)),
                           ),
                           child: IconButton(
                               onPressed: () {
@@ -437,44 +473,72 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  SwitchListTile(
-                      contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
-                      title: Text(
-                        "Show FAB",
-                        style: TextStyle(
-                            fontSize: fieldNameFontSize),
-                      ),
-                      activeColor: accentColor,
-                      value: showFab,
-                      onChanged: (value) {
-                        setState(() {
-                          showFab = value;
-                        });
-                      }),
-                  const SizedBox(
-                    height: 150,
-                  )
-                ]),
-                floatingActionButtonLocation:
-                FloatingActionButtonLocation.endFloat,
-                floatingActionButton: Visibility(
-                  visible: showFab,
-                  child: FloatingActionButton(
-                    backgroundColor: accentColor,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
-                    onPressed: () {
-                      Fluttertoast.showToast(
-                        msg: "Hello",
-                      );
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.black87,
+                  Padding(
+                    padding: listItemsPaddings,
+                    child: Row(
+                      children: const [
+                        Text(
+                          "FAB",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 15,
+                            thickness: 1,
+                            height: 1,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 64,
+                        height: 60,
+                        child: Card(
+                          color: accentColor,
+                          elevation: 6,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.add_outlined,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 64,
+                        height: 60,
+                        child: Card(
+                          color: accentColor,
+                          elevation: 6,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                                Icons.add_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                ]),
+
 
                 //BOTTOMBAR
                 bottomNavigationBar: NavigationBar(
