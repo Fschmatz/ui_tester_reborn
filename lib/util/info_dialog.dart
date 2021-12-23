@@ -17,22 +17,16 @@ class _InfoDialogState extends State<InfoDialog> {
     launch(url);
   }
 
-  _launchChangelog()  {
-    const url = 'https://github.com/Fschmatz/ui_tester_reborn/blob/master/lib/util/changelog.dart';
-    launch(url);
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      scrollable: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
-      title:  Card(
+      title: Card(
         color: Theme.of(context).colorScheme.primary,
-        elevation: 1,
-        margin: const EdgeInsets.fromLTRB(5, 20, 5, 0),
+        margin: const EdgeInsets.all(5),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
@@ -44,32 +38,58 @@ class _InfoDialogState extends State<InfoDialog> {
           ),
         ),
       ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          ListTile(
-            onTap: () {_launchGithub();},
-            leading: const Icon(Icons.open_in_new_outlined),
-            title: const Text("Source Code on GitHub",
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.blue)),
-          ),
-          //const Divider(),
-          ListTile(
-            onTap: () {_launchChangelog();},
-            leading: const Icon(Icons.open_in_new_outlined),
-            title: const Text("View Changelog",
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.blue)),
-          ),
-        ],
-      ),
-      actions: [
+      content: Container(
+        height: 400,
+        width: 300,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
 
-      ],
+              ListTile(
+                title: Text("Source Code".toUpperCase(),
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.primary,)),
+              ),
+              ListTile(
+                onTap: () {_launchGithub();},
+                leading: const Icon(Icons.open_in_new_outlined),
+                title: const Text("View on GitHub",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue)),
+              ),
+
+              const Divider(),
+              ListTile(
+
+                title: Text("Changelog".toUpperCase(),
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.primary,)),
+              ),
+              ListTile(
+                /*leading: const Icon(
+                  Icons.article_outlined,
+                ),*/
+                title: Text(
+                  Changelog.changelogs,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+     /* actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text('OK'),
+        )
+      ],*/
     );
   }
 }

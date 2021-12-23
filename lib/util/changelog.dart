@@ -3,12 +3,10 @@ class Changelog{
   static String appVersion = "1.0.0";
   static String appName = "UI Tester Fschmatz";
 
-  static String changelogCurrent = '''
+  static String changelogs = '''  
 1.0.0
 - Technically Usable
-''';
 
-  static String changelogsOld = '''  
 0.4.0
 - Light and Dark Theme Tabs
 - Elevation CheckListTile
