@@ -1,11 +1,12 @@
 class Changelog{
 
-  static String appVersion = "1.0.0";
+  static String appVersion = "1.0.1";
   static String appName = "UI Tester Fschmatz";
 
   static String changelogs = '''  
-1.0.0
+1.0.1
 - Technically Usable
+- Bug Fix
 
 0.6.0
 - UI Changes

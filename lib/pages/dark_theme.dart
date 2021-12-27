@@ -206,7 +206,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                           children: [
                             CircleAvatar(
                               backgroundColor: accentColor,
-                              radius: 22,
+                              radius: 23,
                             ),
                             Column(
                               children: [
@@ -238,7 +238,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     children: const [
                       Text(
                         "CARD",
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
                       ),
                       Expanded(
                         child: Divider(
@@ -290,7 +291,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     children: const [
                       Text(
                         "APP",
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
                       ),
                       Expanded(
                         child: Divider(
@@ -384,9 +386,10 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                         height: 45,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(color: Colors.grey[800]!, width: 1.5),
+                              Border.all(color: Colors.grey[850]!, width: 1.5),
                           shape: BoxShape.rectangle,
-                          borderRadius:  const BorderRadius.all(Radius.circular(12)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(12)),
                         ),
                         child: IconButton(
                             onPressed: () {
@@ -448,13 +451,13 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     width: 1.5,
-                                    color: Colors.grey[800]!,
+                                    color: Colors.grey[850]!,
                                   ),
                                   borderRadius: BorderRadius.circular(10.0)),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     width: 1.5,
-                                    color: Colors.grey[800]!,
+                                    color: Colors.grey[850]!,
                                   ),
                                   borderRadius: BorderRadius.circular(10.0))),
                           style: const TextStyle(
@@ -465,14 +468,14 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
-
                 Padding(
                   padding: listItemsPaddings,
                   child: Row(
                     children: const [
                       Text(
                         "FAB",
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
                       ),
                       Expanded(
                         child: Divider(
@@ -490,29 +493,37 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FloatingActionButton(
-                      onPressed: (){},
-                      backgroundColor: accentColor,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                      ),
-                      child: const Icon(
-                        Icons.add_outlined,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    FloatingActionButton(
-                      onPressed: (){},
-                      backgroundColor: accentColor,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                      ),
-                      child: const Icon(
-                        Icons.add_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-
+                    SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: Card(
+                          color: accentColor,
+                          elevation: 6,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.add_outlined,
+                            ),
+                          ),
+                        )),
+                    SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: Card(
+                          color: accentColor,
+                          elevation: 6,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.add_outlined,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        )),
                   ],
                 ),
                 const SizedBox(
@@ -596,13 +607,13 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1.5,
-                color: Colors.grey[800]!,
+                color: Colors.grey[850]!,
               ),
               borderRadius: BorderRadius.circular(10.0)),
           border: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1.5,
-                color: Colors.grey[800]!,
+                color: Colors.grey[850]!,
               ),
               borderRadius: BorderRadius.circular(10.0))),
       style: const TextStyle(

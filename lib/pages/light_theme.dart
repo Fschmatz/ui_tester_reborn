@@ -87,7 +87,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
   //------------- CARD
   TextEditingController customControllerCardColor = TextEditingController();
 
-  Color cardColor = Color(0xFFF0F0F0);
+  Color cardColor = const Color(0xFFF0F0F0);
 
   void changeCardColor(String colorCode) {
     try {
@@ -201,7 +201,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return InfoDialog();
+                              return const InfoDialog();
                             },
                           );
                         }),
@@ -228,7 +228,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                             children: [
                               CircleAvatar(
                                 backgroundColor: accentColor,
-                                radius: 22,
+                                radius: 23,
                               ),
                               Column(
                                 children: const [
@@ -392,7 +392,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           height: 45,
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: Colors.grey[800]!, width: 1.5),
+                            color: Colors.grey[300]!, width: 1.5),
                             shape: BoxShape.rectangle,
                             borderRadius:  const BorderRadius.all(Radius.circular(12)),
                           ),
@@ -456,13 +456,13 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       width: 1.5,
-                                      color: Colors.grey[800]!,
+                                  color: Colors.grey[300]!,
                                     ),
                                     borderRadius: BorderRadius.circular(10.0)),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       width: 1.5,
-                                      color: Colors.grey[800]!,
+                                  color: Colors.grey[300]!,
                                     ),
                                     borderRadius: BorderRadius.circular(10.0))),
                             style: const TextStyle(
@@ -497,29 +497,37 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FloatingActionButton(
-                        onPressed: (){},
-                        backgroundColor: accentColor,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                        ),
-                        child: const Icon(
-                          Icons.add_outlined,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      FloatingActionButton(
-                        onPressed: (){},
-                        backgroundColor: accentColor,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                        ),
-                        child: const Icon(
-                          Icons.add_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-
+                      SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: Card(
+                            color: accentColor,
+                            elevation: 6,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.add_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )),
+                      SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: Card(
+                            color: accentColor,
+                            elevation: 6,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.add_outlined,
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                   const SizedBox(
@@ -591,13 +599,13 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1.5,
-                color: Colors.grey[800]!,
+            color: Colors.grey[300]!,
               ),
               borderRadius: BorderRadius.circular(10.0)),
           border: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1.5,
-                color: Colors.grey[800]!,
+            color: Colors.grey[300]!,
               ),
               borderRadius: BorderRadius.circular(10.0))),
       style: const TextStyle(

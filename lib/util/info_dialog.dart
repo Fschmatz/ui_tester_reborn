@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'changelog.dart';
+
+//USADO PARA ESCONDER O GLOW NO SCROLL
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
+}
+
 
 class InfoDialog extends StatefulWidget {
   const InfoDialog({Key? key}) : super(key: key);
@@ -19,7 +27,6 @@ class _InfoDialogState extends State<InfoDialog> {
     const url = 'https://m3.material.io/';
     launch(url);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,60 +49,63 @@ class _InfoDialogState extends State<InfoDialog> {
           ),
         ),
       ),
-      content: Container(
+      content: SizedBox(
         height: 400,
         width: 300,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: Text("Links".toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).colorScheme.primary,
-                    )),
-              ),
-              ListTile(
-                onTap: () {
-                  _launchGithub();
-                },
-                leading: const Icon(Icons.open_in_new_outlined),
-                title: const Text("View Source Code on GitHub",
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue)),
-              ),
-              ListTile(
-                onTap: () {
-                  _launchMaterialSite();
-                },
-                leading: const Icon(Icons.open_in_new_outlined),
-                title: const Text("Material 3 Guidelines",
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue)),
-              ),
-              const Divider(),
-              ListTile(
-                title: Text("Changelog".toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).colorScheme.primary,
-                    )),
-              ),
-              ListTile(
-                /*leading: const Icon(
-                  Icons.article_outlined,
-                ),*/
-                title: Text(
-                  Changelog.changelogs,
-                  style: TextStyle(fontSize: 16),
+        child: ScrollConfiguration(
+          behavior: MyCustomScrollBehavior(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Text("Links".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.primary,
+                      )),
                 ),
-              ),
-            ],
+                ListTile(
+                  onTap: () {
+                    _launchGithub();
+                  },
+                  leading: const Icon(Icons.open_in_new_outlined),
+                  title: const Text("View Source Code on GitHub",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue)),
+                ),
+                ListTile(
+                  onTap: () {
+                    _launchMaterialSite();
+                  },
+                  leading: const Icon(Icons.open_in_new_outlined),
+                  title: const Text("Material 3 Guidelines",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue)),
+                ),
+                const Divider(),
+                ListTile(
+                  title: Text("Changelog".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.primary,
+                      )),
+                ),
+                ListTile(
+                  /*leading: const Icon(
+                    Icons.article_outlined,
+                  ),*/
+                  title: Text(
+                    Changelog.changelogs,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
