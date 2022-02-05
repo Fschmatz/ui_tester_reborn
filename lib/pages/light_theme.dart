@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ui_tester_reborn/pages/dark_theme.dart';
+import 'package:ui_tester_reborn/pages/seed_color_m3.dart';
 import 'package:ui_tester_reborn/util/info_dialog.dart';
 
 class LightTheme extends StatefulWidget {
@@ -182,8 +183,20 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                   elevation: 0,
                   title: const Text('UI Tester Fschmatz'),
                   actions: [
+                    IconButton(
+                        icon: const Icon(
+                          Icons.color_lens_outlined,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => const SeedColorM3(),
+                                fullscreenDialog: true,
+                              ));
+                        }),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       child: IconButton(
                         icon: const Icon(Icons.restore_outlined),
                         tooltip: 'Reset to Defaults',
