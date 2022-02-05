@@ -30,12 +30,17 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
   EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(25, 10, 25, 10);
   bool cardElevation = true;
   bool showFab = false;
+  bool monet = false;
+  late ColorScheme _colorScheme;
 
   void changeColorPicker(Color color) => setState(() => {
-        accentColor = color,
-        customControllerAccentColor.text =
-            accentColor.toString().substring(10, 16).toUpperCase(),
-      });
+    accentColor = color,
+    customControllerAccentColor.text =
+        accentColor.toString().substring(10, 16).toUpperCase(),
+    _colorScheme = ColorScheme.fromSeed(
+        seedColor: accentColor),
+    if(monet){activateMonet()},
+  });
 
   void changeAccentColor(String colorCode) {
     try {
@@ -116,7 +121,10 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
 
   void refreshUI() {
     //restore defaults
+    monet = false;
     cardElevation = true;
+    _colorScheme = ColorScheme.fromSeed(
+        seedColor: accentColor);
     changeCardColor('F0F0F0');
     changeAccentColor('0795C2');
     changeBackgroundColor('FFFFFF');
@@ -128,6 +136,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
   void initState() {
     populateTextFieldsWithDefaultValues();
     super.initState();
+    _colorScheme = ColorScheme.fromSeed(seedColor: accentColor);
   }
 
   void loseFocus() {
@@ -135,6 +144,54 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
     if (!currentFocus.hasPrimaryFocus) {
       currentFocus.unfocus();
     }
+  }
+
+  void activateMonet() {
+    //Accent
+    changeAccentColor(_colorScheme.primary
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAccentColor.text = _colorScheme.primary
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //Background
+    changeBackgroundColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppBackgroundColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //BottomBar
+    changeAppBottomBarColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppBottomBarColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //TopBar
+    changeAppTopBarColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppTopBarColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //Card
+    changeCardColor(_colorScheme.secondaryContainer
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerCardColor.text = _colorScheme.secondaryContainer
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
   }
 
   @override
@@ -191,7 +248,10 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           Navigator.push(
                               context,
                               MaterialPageRoute<void>(
-                                builder: (BuildContext context) => const SeedColorM3(),
+                                builder: (BuildContext context) => SeedColorM3(
+                                  pageTheme: 'light',
+                                  homeAccent: accentColor,
+                                ),
                                 fullscreenDialog: true,
                               ));
                         }),
@@ -221,6 +281,24 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                   ],
                 ),
                 body: ListView(children: [
+                  SwitchListTile(
+                      contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                      title: const Text(
+                        "Monet",
+                      ),
+                      activeColor: accentColor,
+                      value: monet,
+                      onChanged: (value) {
+                        setState(() {
+                          monet = value;
+                        });
+                        if (monet) {
+                          activateMonet();
+                        } else {
+                          refreshUI();
+                          populateTextFieldsWithDefaultValues();
+                        }
+                      }),
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Card(
@@ -514,15 +592,19 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           width: 60,
                           height: 60,
                           child: Card(
-                            color: accentColor,
+                            color:  monet
+                                ? _colorScheme.primary
+                                : accentColor,
                             elevation: 6,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(16)),
                             ),
                             child: const Center(
-                              child: Icon(
-                                Icons.add_outlined,
-                                color: Colors.white,
+                              child: Center(
+                                child: Icon(
+                                  Icons.add_outlined,
+                                  color: Colors.black87,
+                                ),
                               ),
                             ),
                           )),
@@ -530,14 +612,19 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           width: 60,
                           height: 60,
                           child: Card(
-                            color: accentColor,
+                            color:  monet
+                                ? _colorScheme.primaryContainer
+                                : accentColor,
                             elevation: 6,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(16)),
                             ),
-                            child: const Center(
-                              child: Icon(
-                                Icons.add_outlined,
+                            child: Center(
+                              child: Center(
+                                child: Icon(
+                                  Icons.add_outlined,
+                                  color: monet ? _colorScheme.onPrimaryContainer : Colors.white,
+                                ),
                               ),
                             ),
                           )),

@@ -30,16 +30,23 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
   EdgeInsets listItemsPaddings = const EdgeInsets.fromLTRB(25, 10, 25, 10);
   bool cardElevation = true;
   bool showFab = false;
+  bool monet = false;
+  late ColorScheme _colorScheme;
 
   void changeColorPicker(Color color) => setState(() => {
         accentColor = color,
         customControllerAccentColor.text =
             accentColor.toString().substring(10, 16).toUpperCase(),
+        _colorScheme = ColorScheme.fromSeed(
+            seedColor: accentColor, brightness: Brightness.dark),
+        if(monet){activateMonet()},
       });
 
   void changeAccentColor(String colorCode) {
     try {
       setState(() {
+        _colorScheme = ColorScheme.fromSeed(
+            seedColor: accentColor, brightness: Brightness.dark);
         accentColor = Color(int.parse('0xFF' + colorCode));
       });
     } catch (exception) {
@@ -116,7 +123,10 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
 
   void refreshUI() {
     //restore defaults
+    monet = false;
     cardElevation = true;
+    _colorScheme = ColorScheme.fromSeed(
+        seedColor: accentColor, brightness: Brightness.dark);
     changeCardColor('303032');
     changeAccentColor('449EBC');
     changeBackgroundColor('202022');
@@ -128,6 +138,8 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
   void initState() {
     populateTextFieldsWithDefaultValues();
     super.initState();
+    _colorScheme = ColorScheme.fromSeed(
+        seedColor: accentColor, brightness: Brightness.dark);
   }
 
   void loseFocus() {
@@ -137,9 +149,56 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
     }
   }
 
+  void activateMonet() {
+    //Accent
+    changeAccentColor(_colorScheme.primary
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAccentColor.text = _colorScheme.primary
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //Background
+    changeBackgroundColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppBackgroundColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //BottomBar
+    changeAppBottomBarColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppBottomBarColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //TopBar
+    changeAppTopBarColor(_colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerAppTopBarColor.text = _colorScheme.background
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+    //Card
+    changeCardColor(_colorScheme.secondaryContainer
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', ''));
+    customControllerCardColor.text = _colorScheme.secondaryContainer
+        .toString()
+        .replaceAll('Color(0xff', '')
+        .replaceAll(')', '');
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
@@ -168,7 +227,10 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                         Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => const SeedColorM3(),
+                              builder: (BuildContext context) => SeedColorM3(
+                                pageTheme: 'dark',
+                                homeAccent: accentColor,
+                              ),
                               fullscreenDialog: true,
                             ));
                       }),
@@ -198,6 +260,24 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 ],
               ),
               body: ListView(children: [
+                SwitchListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                    title: const Text(
+                      "Monet",
+                    ),
+                    activeColor: accentColor,
+                    value: monet,
+                    onChanged: (value) {
+                      setState(() {
+                        monet = value;
+                      });
+                      if (monet) {
+                        activateMonet();
+                      } else {
+                        refreshUI();
+                        populateTextFieldsWithDefaultValues();
+                      }
+                    }),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Card(
@@ -509,22 +589,9 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                         width: 60,
                         height: 60,
                         child: Card(
-                          color: accentColor,
-                          elevation: 6,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.add_outlined,
-                            ),
-                          ),
-                        )),
-                    SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: Card(
-                          color: accentColor,
+                          color: monet
+                              ? _colorScheme.primary
+                              : accentColor,
                           elevation: 6,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -533,6 +600,26 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                             child: Icon(
                               Icons.add_outlined,
                               color: Colors.black87,
+                            ),
+                          ),
+                        )),
+                    SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: Card(
+                          color: monet
+                              ? _colorScheme.primaryContainer
+                              : accentColor,
+                          elevation: 6,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add_outlined,
+                              color: monet
+                                  ? _colorScheme.onPrimaryContainer
+                                  : Colors.white,
                             ),
                           ),
                         )),

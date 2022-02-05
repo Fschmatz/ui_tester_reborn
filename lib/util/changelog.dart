@@ -1,9 +1,13 @@
 class Changelog{
 
-  static String appVersion = "1.1.0";
+  static String appVersion = "1.2.0";
   static String appName = "UI Tester Fschmatz";
 
-  static String changelogs = '''  
+  static String changelogs = '''    
+1.2.0
+- Improved M3 Color Page
+- Added Monet Switch to Home
+
 1.1.0
 - Added M3 Color Page
 
