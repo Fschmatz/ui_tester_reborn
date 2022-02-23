@@ -39,15 +39,17 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
             accentColor.toString().substring(10, 16).toUpperCase(),
         _colorScheme = ColorScheme.fromSeed(
             seedColor: accentColor, brightness: Brightness.dark),
-        if(monet){activateMonet()},
+        if(monet){
+          activateMonet()
+        },
       });
 
   void changeAccentColor(String colorCode) {
     try {
       setState(() {
+        accentColor = Color(int.parse('0xFF' + colorCode));
         _colorScheme = ColorScheme.fromSeed(
             seedColor: accentColor, brightness: Brightness.dark);
-        accentColor = Color(int.parse('0xFF' + colorCode));
       });
     } catch (exception) {
       Fluttertoast.showToast(
@@ -187,11 +189,11 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
         .replaceAll('Color(0xff', '')
         .replaceAll(')', '');
     //Card
-    changeCardColor(_colorScheme.secondaryContainer
+    changeCardColor(_colorScheme.surfaceVariant
         .toString()
         .replaceAll('Color(0xff', '')
         .replaceAll(')', ''));
-    customControllerCardColor.text = _colorScheme.secondaryContainer
+    customControllerCardColor.text = _colorScheme.surfaceVariant
         .toString()
         .replaceAll('Color(0xff', '')
         .replaceAll(')', '');
@@ -527,8 +529,13 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                           maxLengthEnforcement: MaxLengthEnforcement.enforced,
                           controller: customControllerAccentColor,
                           textCapitalization: TextCapitalization.characters,
-                          onSubmitted: (String s) =>
+                          onSubmitted: (String s) => {
                               changeAccentColor(s.toString()),
+                              if(monet){
+                                 activateMonet()
+                              },
+                            setState(() => {})
+                          },
                           decoration: InputDecoration(
                               counterText: "",
                               contentPadding: const EdgeInsets.symmetric(
@@ -565,7 +572,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                   child: Row(
                     children: const [
                       Text(
-                        "FAB",
+                        "EXAMPLES",
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w600),
                       ),
@@ -625,6 +632,54 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                         )),
                   ],
                 ),
+                ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(45, 25, 45, 0),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        Icons.report_problem_outlined,
+                        size: 30,
+                        color: accentColor,
+                      ),
+                      Icon(
+                        Icons.person_outline,
+                        size: 30,
+                        color: accentColor,
+                      ),
+                      Icon(
+                        Icons.print_outlined,
+                        size: 30,
+                        color: accentColor,
+                      ),
+                    ],
+                  ),
+                  trailing: Icon(Icons.note,
+                    size: 30,
+                    color: accentColor,
+                  ),
+                  leading:  Icon(Icons.store_mall_directory,
+                    size: 30,
+                    color: accentColor,
+                  ),
+                ),
+                ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+                  title: Text("Example Text",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: accentColor,
+                      )),
+                ),
+                ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  title: Text("EXAMPLE TEXT BOLD",
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: accentColor,
+                      )),
+                ),
                 const SizedBox(
                   height: 50,
                 ),
@@ -645,8 +700,6 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                                 color: Color(0xFFCACACA),
                                 fontWeight: FontWeight.w500)))),
                 child: NavigationBar(
-                  labelBehavior:
-                      NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: 0,
                   onDestinationSelected: (index) {
                     if (index == 1) {

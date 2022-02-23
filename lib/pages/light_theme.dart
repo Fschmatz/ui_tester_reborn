@@ -46,6 +46,8 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
     try {
       setState(() {
         accentColor = Color(int.parse('0xFF' + colorCode));
+        _colorScheme = ColorScheme.fromSeed(
+            seedColor: accentColor);
       });
     } catch (exception) {
       Fluttertoast.showToast(
@@ -184,11 +186,11 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
         .replaceAll('Color(0xff', '')
         .replaceAll(')', '');
     //Card
-    changeCardColor(_colorScheme.secondaryContainer
+    changeCardColor(_colorScheme.surfaceVariant
         .toString()
         .replaceAll('Color(0xff', '')
         .replaceAll(')', ''));
-    customControllerCardColor.text = _colorScheme.secondaryContainer
+    customControllerCardColor.text = _colorScheme.surfaceVariant
         .toString()
         .replaceAll('Color(0xff', '')
         .replaceAll(')', '');
@@ -531,8 +533,13 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                             maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             controller: customControllerAccentColor,
                             textCapitalization: TextCapitalization.characters,
-                            onSubmitted: (String s) =>
-                                changeAccentColor(s.toString()),
+                            onSubmitted: (String s) => {
+                              changeAccentColor(s.toString()),
+                              if(monet){
+                                activateMonet()
+                              },
+                              setState(() => {})
+                            },
                             decoration: InputDecoration(
                                 counterText: "",
                                 contentPadding: const EdgeInsets.symmetric(
@@ -569,7 +576,7 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                     child: Row(
                       children: const [
                         Text(
-                          "FAB",
+                          "EXAMPLES",
                           style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                         ),
                         Expanded(
@@ -630,6 +637,54 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
                           )),
                     ],
                   ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(45, 25, 45, 0),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Icon(
+                          Icons.report_problem_outlined,
+                          size: 30,
+                          color: accentColor,
+                        ),
+                        Icon(
+                          Icons.person_outline,
+                          size: 30,
+                          color: accentColor,
+                        ),
+                        Icon(
+                          Icons.print_outlined,
+                          size: 30,
+                          color: accentColor,
+                        ),
+                      ],
+                    ),
+                    trailing: Icon(Icons.note,
+                      size: 30,
+                      color: accentColor,
+                    ),
+                    leading:  Icon(Icons.store_mall_directory,
+                      size: 30,
+                      color: accentColor,
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+                    title: Text("Example Text",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: accentColor,
+                        )),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                    title: Text("EXAMPLE TEXT BOLD",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: accentColor,
+                        )),
+                  ),
                   const SizedBox(
                     height: 50,
                   ),
@@ -638,8 +693,6 @@ class _LightThemeState extends State<LightTheme> with TickerProviderStateMixin {
 
                 //BOTTOMBAR
                 bottomNavigationBar: NavigationBar(
-                  labelBehavior:
-                      NavigationDestinationLabelBehavior.onlyShowSelected,
                   selectedIndex: 1,
                   onDestinationSelected: (index) {
                     if (index == 0) {
