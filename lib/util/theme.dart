@@ -17,8 +17,8 @@ ThemeData light = ThemeData(
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFF050505)),
         titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
       color: Color(0xFFF1F1F4),
@@ -80,8 +80,8 @@ ThemeData dark = ThemeData(
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFFCACACA)),
         titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
       color: Color(0xFF292828),

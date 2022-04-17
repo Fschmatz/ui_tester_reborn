@@ -262,24 +262,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 ],
               ),
               body: ListView(children: [
-                SwitchListTile(
-                    contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                    title: const Text(
-                      "Monet",
-                    ),
-                    activeColor: accentColor,
-                    value: monet,
-                    onChanged: (value) {
-                      setState(() {
-                        monet = value;
-                      });
-                      if (monet) {
-                        activateMonet();
-                      } else {
-                        refreshUI();
-                        populateTextFieldsWithDefaultValues();
-                      }
-                    }),
+
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Card(
@@ -326,6 +309,127 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+                SwitchListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(25, 0, 15, 10),
+                    title: const Text(
+                      "Monet",
+                    ),
+                    activeColor: accentColor,
+                    value: monet,
+                    onChanged: (value) {
+                      setState(() {
+                        monet = value;
+                      });
+                      if (monet) {
+                        activateMonet();
+                      } else {
+                        refreshUI();
+                        populateTextFieldsWithDefaultValues();
+                      }
+                    }),
+                Padding(
+                  padding: listItemsPaddings,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                          child: Text(
+                            "Accent\nDef: 449EBC",
+                            style: TextStyle(
+                                fontSize: fieldNameFontSize,
+                                color: Theme.of(context).hintColor),
+                          )),
+                      Container(
+                        height: 45,
+                        decoration: BoxDecoration(
+                          border:
+                          Border.all(color: Colors.grey[850]!, width: 1.5),
+                          shape: BoxShape.rectangle,
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(12)),
+                        ),
+                        child: IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    titlePadding: const EdgeInsets.all(0.0),
+                                    contentPadding: const EdgeInsets.all(0.0),
+                                    content: SingleChildScrollView(
+                                      child: ColorPicker(
+                                        pickerColor: accentColor,
+                                        onColorChanged: changeColorPicker,
+                                        colorPickerWidth: 300.0,
+                                        pickerAreaHeightPercent: 1.0,
+                                        enableAlpha: false,
+                                        displayThumbColor: true,
+                                        showLabel: true,
+                                        paletteType: PaletteType.hsv,
+                                        pickerAreaBorderRadius:
+                                        const BorderRadius.only(
+                                          topLeft: Radius.circular(2.0),
+                                          topRight: Radius.circular(2.0),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.colorize_outlined,
+                              size: 20,
+                            )),
+                      ),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      Flexible(
+                        child: TextField(
+                          textAlign: TextAlign.center,
+                          maxLength: 6,
+                          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                          controller: customControllerAccentColor,
+                          textCapitalization: TextCapitalization.characters,
+                          onSubmitted: (String s) => {
+                            changeAccentColor(s.toString()),
+                            if(monet){
+                              activateMonet()
+                            },
+                            setState(() => {})
+                          },
+                          decoration: InputDecoration(
+                              counterText: "",
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 5.0),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 1.5,
+                                  color: accentColor,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1.5,
+                                    color: Colors.grey[850]!,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1.5,
+                                    color: Colors.grey[850]!,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0))),
+                          style: const TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: listItemsPaddings,
                   child: Row(
@@ -365,7 +469,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                   ]),
                 ),
                 SwitchListTile(
-                    contentPadding: const EdgeInsets.fromLTRB(25, 10, 70, 10),
+                    contentPadding: const EdgeInsets.fromLTRB(25, 10, 15, 10),
                     title: Text(
                       "Card Elevation\nDef: 1",
                       style: TextStyle(
@@ -467,109 +571,6 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 Padding(
                   padding: listItemsPaddings,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                          child: Text(
-                        "Accent\nDef: 449EBC",
-                        style: TextStyle(
-                            fontSize: fieldNameFontSize,
-                            color: Theme.of(context).hintColor),
-                      )),
-                      Container(
-                        height: 45,
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.grey[850]!, width: 1.5),
-                          shape: BoxShape.rectangle,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(12)),
-                        ),
-                        child: IconButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    titlePadding: const EdgeInsets.all(0.0),
-                                    contentPadding: const EdgeInsets.all(0.0),
-                                    content: SingleChildScrollView(
-                                      child: ColorPicker(
-                                        pickerColor: accentColor,
-                                        onColorChanged: changeColorPicker,
-                                        colorPickerWidth: 300.0,
-                                        pickerAreaHeightPercent: 1.0,
-                                        enableAlpha: false,
-                                        displayThumbColor: true,
-                                        showLabel: true,
-                                        paletteType: PaletteType.hsv,
-                                        pickerAreaBorderRadius:
-                                            const BorderRadius.only(
-                                          topLeft: Radius.circular(2.0),
-                                          topRight: Radius.circular(2.0),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.colorize_outlined,
-                              size: 20,
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      Flexible(
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          maxLength: 6,
-                          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                          controller: customControllerAccentColor,
-                          textCapitalization: TextCapitalization.characters,
-                          onSubmitted: (String s) => {
-                              changeAccentColor(s.toString()),
-                              if(monet){
-                                 activateMonet()
-                              },
-                            setState(() => {})
-                          },
-                          decoration: InputDecoration(
-                              counterText: "",
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 0.0, horizontal: 5.0),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1.5,
-                                  color: accentColor,
-                                ),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    width: 1.5,
-                                    color: Colors.grey[850]!,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    width: 1.5,
-                                    color: Colors.grey[850]!,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10.0))),
-                          style: const TextStyle(
-                            fontSize: 17,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: listItemsPaddings,
-                  child: Row(
                     children: const [
                       Text(
                         "EXAMPLES",
@@ -665,7 +666,7 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 ),
                 ListTile(
                   contentPadding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
-                  title: Text("Example Text",
+                  title: Text("Example Text - Size 16",
                       style: TextStyle(
                         fontSize: 16,
                         color: accentColor,
@@ -673,10 +674,19 @@ class _DarkThemeState extends State<DarkTheme> with TickerProviderStateMixin {
                 ),
                 ListTile(
                   contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
-                  title: Text("EXAMPLE TEXT BOLD",
+                  title: Text("Example Text - Size 14 w500",
                       style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: accentColor,
+                      )),
+                ),
+                ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  title: Text("EXAMPLE TEXT BOLD - size 12 w500".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                         color: accentColor,
                       )),
                 ),
